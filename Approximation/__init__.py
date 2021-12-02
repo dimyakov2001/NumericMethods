@@ -1,0 +1,3 @@
+from .LinearApproximation import LinearApproximation
+from .PolinomialApproximation import ThirdDegreePolinomialApproximation
+from .LinearizationApproximation import LinearizationApproximation, LinearizationApproximationFunctionPack

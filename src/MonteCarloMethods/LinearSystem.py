@@ -10,6 +10,18 @@ class LinearSystem:
 
     @staticmethod
     def solve(coefs: np.ndarray, frees: np.ndarray, n: int, e: float) -> np.ndarray:
+        """
+        Решение СЛАУ вида x_i = a_i1 * x_1 + ... + a_ij * x_j + ... + a_in * x_n + b_i
+
+        Args:
+            coefs – матрица a_ij
+            frees – вектор b_i
+            n – число розыгрышей при вычислении X_i на m-ом шаге
+            e – точность (критерий остановки)
+
+        Returns:
+            Вектор с x_i
+        """
         LinearSystem.__coefs = coefs
         LinearSystem.__frees = frees
         LinearSystem.__n = n

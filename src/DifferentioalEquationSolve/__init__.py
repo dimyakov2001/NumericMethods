@@ -1,2 +1,0 @@
-from .DifferrentialEquation import DifferentialEquation, DifferentialEquationSolveMethol
-from .BoundaryValueProblem import BoundaryValueProblem

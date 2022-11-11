@@ -1,5 +1,5 @@
-from . import DifferentialEquation, DifferentialEquationSolveMethol
-from . import BoundaryValueProblem
+import DifferrentialEquation
+import BoundaryValueProblem
 
 def derivative(x, y):
     return -8 + 2*x - y
@@ -9,17 +9,17 @@ x_end = 3
 y_start = 3
 h = 0.4
 
-x, y = DifferentialEquation.solve(derivative, x_start, x_end, y_start, h, DifferentialEquationSolveMethol.Euler)
+x, y = DifferrentialEquation.solve(derivative, x_start, x_end, y_start, h, DifferrentialEquation.SolveMethod.Euler)
 print("Решение ДУ методом Эйлера:")
 print("x: ", x)
 print("y: ", y)
 
-x, y = DifferentialEquation.solve(derivative, x_start, x_end, y_start, h, DifferentialEquationSolveMethol.ModifiedEuler)
+x, y = DifferrentialEquation.solve(derivative, x_start, x_end, y_start, h, DifferrentialEquation.SolveMethod.ModifiedEuler)
 print("Решение ДУ модифицированным методом Эйлера:")
 print("x: ", x)
 print("y: ", y)
 
-x, y = DifferentialEquation.solve(derivative, x_start, x_end, y_start, h, DifferentialEquationSolveMethol.RungeKutt)
+x, y = DifferrentialEquation.solve(derivative, x_start, x_end, y_start, h, DifferrentialEquation.SolveMethod.RungeKutt)
 print("Решение ДУ методом Рунге-Кутта:")
 print("x: ", x)
 print("y: ", y)

@@ -1,10 +1,10 @@
 import numpy as np
-from Gauss import Gauss
-from GaussWithError import GaussWithError
-from InverseMatrix import InverseMatrix
-from SimpleIter_Siedel import SimpleIter_Siedel
-from SimpleIter_SiedelWithCheck import SimpleIter_SiedelWithConvergenceCheck
-from Tridiagonal import Tridiagonal
+import Gauss
+import GaussWithError
+import InverseMatrix
+import SimpleIter_Siedel
+import SimpleIter_SiedelWithCheck
+import Tridiagonal
 
 # Inverse
 matrix = np.array(
@@ -47,5 +47,5 @@ e = 0.0001
 
 print("Simple Iter: {}".format(SimpleIter_Siedel.solve(matrix, frees, e)))
 print("Siedel: {}".format(SimpleIter_Siedel.solve(matrix, frees, e, siedel_method=True)))
-print("Simple Iter with convergence check: {}".format(SimpleIter_SiedelWithConvergenceCheck.solve(matrix, frees, e)))
-print("Siedel with convergence check: {}".format(SimpleIter_SiedelWithConvergenceCheck.solve(matrix, frees, e, siedel_method=True)))
+print("Simple Iter with convergence check: {}".format(SimpleIter_SiedelWithCheck.solve(matrix, frees, e)))
+print("Siedel with convergence check: {}".format(SimpleIter_SiedelWithCheck.solve(matrix, frees, e, siedel_method=True)))

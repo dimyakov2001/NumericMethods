@@ -1,7 +1,7 @@
 import numpy as np
-from . import Integration
-from . import LinearSystem
-from . import FigureArea
+import Integration
+from LinearSystem import LinearSystem
+import FigureArea
 
 bounds = [(0, 1), (1, 2), (0, 3)]
 n = 10000

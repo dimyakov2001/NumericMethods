@@ -2,9 +2,9 @@ import numpy as np
 from numpy.core.defchararray import title
 import pylab as plt
 from types import FunctionType
-from . import LagrangianInterpolation
-from . import NewtonInterpolation
-from . import SplineInterpolation
+import LagrangianPolynomial
+import NewtonPolynomial
+import SplineInterpolation
 
 def show_interpolation(interpolation_funcs: dict, x: list, y: list, dots_colours: list=None, figsize: list=(6, 3), resolution: float=100):
     plt.figure(figsize=figsize)
@@ -24,8 +24,8 @@ def show_interpolation(interpolation_funcs: dict, x: list, y: list, dots_colours
 x = np.array([0, 2, 3], dtype=float)
 y = np.array([-2, 0, -4], dtype=float)
 
-lagrangian_interpolation_polynomial = LagrangianInterpolation.make_interpolation(x, y)
-newton_interpolation = NewtonInterpolation.make_interpolation(x, y)
+lagrangian_interpolation_polynomial = LagrangianPolynomial.make_interpolation(x, y)
+newton_interpolation = NewtonPolynomial.make_interpolation(x, y)
 spline_interpolation = SplineInterpolation.make_interpolation(x, y)
 show_interpolation(
     {

@@ -18,46 +18,38 @@ class LinearizationApproximationFunctionPack:
         self.result = None
 
 
+def make_approximation(x: np.ndarray, y: np.ndarray, functions: LinearizationApproximationFunctionPack) -> FunctionType:
 
-class LinearizationApproximation:
+    X = __linearize_xy(x, y, functions.x)
+    Y = __linearize_xy(x, y, functions.y)
 
-    @staticmethod
-    def make_approximation(x: np.ndarray, y: np.ndarray, functions: LinearizationApproximationFunctionPack) -> FunctionType:
+    matrix = __make_matrix(X)
+    frees = __make_free_coefs_vector(X, Y)
 
-        X = LinearizationApproximation.__linearize_xy(x, y, functions.x)
-        Y = LinearizationApproximation.__linearize_xy(x, y, functions.y)
+    A, B = Gauss.solve(matrix, frees)
 
-        matrix = LinearizationApproximation.__make_matrix(X)
-        frees = LinearizationApproximation.__make_free_coefs_vector(X, Y)
+    a = __delinearize_AB(A, B, functions.A)
+    b = __delinearize_AB(A, B, functions.B)
+    
+    return lambda x: functions.result(x, a, b)
 
-        A, B = Gauss.solve(matrix, frees)
+def __linearize_xy(x: np.ndarray, y: np.ndarray, linearization_func: FunctionType):
+    return np.array(list(map(
+        lambda i: linearization_func(x[i], y[i]),
+        range(len(x))
+    )))
 
-        a = LinearizationApproximation.__delinearize_AB(A, B, functions.A)
-        b = LinearizationApproximation.__delinearize_AB(A, B, functions.B)
-        
-        return lambda x: functions.result(x, a, b)
+def __make_matrix(x: np.ndarray) -> np.ndarray:
+    return np.array(
+        [[np.sum(x**2), np.sum(x)],
+        [np.sum(x), len(x)]],
+        dtype=float
+    )
 
-    @staticmethod
-    def __linearize_xy(x: np.ndarray, y: np.ndarray, linearization_func: FunctionType):
-        return np.array(list(map(
-            lambda i: linearization_func(x[i], y[i]),
-            range(len(x))
-        )))
+def __make_free_coefs_vector(x: np.ndarray, y: np.ndarray) -> np.ndarray:
+    return np.array([np.sum(x * y), np.sum(y)], dtype=float)
 
-    @staticmethod
-    def __make_matrix(x: np.ndarray) -> np.ndarray:
-        return np.array(
-           [[np.sum(x**2), np.sum(x)],
-            [np.sum(x), len(x)]],
-            dtype=float
-        )
-
-    @staticmethod
-    def __make_free_coefs_vector(x: np.ndarray, y: np.ndarray) -> np.ndarray:
-        return np.array([np.sum(x * y), np.sum(y)], dtype=float)
-
-    @staticmethod
-    def __delinearize_AB(A: float, B: float, delinearization_function: FunctionType) -> float:
-        return delinearization_function(A, B)
+def __delinearize_AB(A: float, B: float, delinearization_function: FunctionType) -> float:
+    return delinearization_function(A, B)
 
 

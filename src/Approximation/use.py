@@ -1,6 +1,6 @@
-from . import LinearApproximation
-from . import ThirdDegreePolinomialApproximation
-from . import LinearizationApproximation, LinearizationApproximationFunctionPack
+import LinearApproximation
+import ThirdDegreePolinomialApproximation
+import LinearizationApproximation
 import numpy as np
 import pylab as plt
 from math import exp, log
@@ -27,7 +27,7 @@ y = np.array([5, 3, 7, 11], dtype=float)
 linear_approximation = LinearApproximation.make_approximation(x, y)
 polinomial_approximation = ThirdDegreePolinomialApproximation.make_approximation(x, y)
 
-linearization_approximation_functions = LinearizationApproximationFunctionPack()
+linearization_approximation_functions = LinearizationApproximation.LinearizationApproximationFunctionPack()
 linearization_approximation_functions.x = lambda x, y: x*y
 linearization_approximation_functions.y = lambda x, y: y
 linearization_approximation_functions.A = lambda A, B: -B/A

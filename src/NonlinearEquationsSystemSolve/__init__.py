@@ -1,1 +1,1 @@
-from .SimpleIter_Siedel_Newton_ShortNewton import NonLinearEquationSystemSolve, MethodModes
+from .SimpleIter_Siedel_Newton_ShortNewton import NonLinearEquationSystemSolve, str

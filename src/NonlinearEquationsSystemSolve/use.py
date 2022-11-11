@@ -1,7 +1,7 @@
 import numpy as np
 from types import FunctionType
 import math
-from SimpleIter_Siedel_Newton_ShortNewton import MethodModes, solve
+from SimpleIter_Siedel_Newton_ShortNewton import solve, METHOD_SHORT_NEWTON, METHOD_NEWTON, METHOD_SIEDEL
 
 F_matrix = np.array([
     lambda args: (3**0.5) * args[0] - 2*math.sin(args[0]**2) - 3*(2**0.5) * args[1] - 0.5,
@@ -17,6 +17,6 @@ jacobi_matrix = np.array([
 start_values = [1, -0.7]
 e = 0.01
 
-print("ShortNewton (SimpleIter): {}".format(solve(F_matrix, jacobi_matrix, start_values, e, MethodModes.ShortNewton)))
-print("Newton: {}".format(solve(F_matrix, jacobi_matrix, start_values, e, MethodModes.Newton)))
-print("Siedel: {}".format(solve(F_matrix, jacobi_matrix, start_values, e, MethodModes.Siedel)))
+print("ShortNewton (SimpleIter): {}".format(solve(F_matrix, jacobi_matrix, start_values, e, METHOD_SHORT_NEWTON)))
+print("Newton: {}".format(solve(F_matrix, jacobi_matrix, start_values, e, METHOD_NEWTON)))
+print("Siedel: {}".format(solve(F_matrix, jacobi_matrix, start_values, e, METHOD_SIEDEL)))
